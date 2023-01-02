@@ -1,0 +1,75 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ImageNet Classification App</title>
+    <!-- Una fuente de Google -->
+    <link href='https://fonts.googleapis.com/css?family=Roboto Condensed' rel='stylesheet'>
+    <!-- Cargamos el CSS que haremos para este sitio -->
+    <link href="{{ url_for('static' , filename='css/index.css') }}" rel="stylesheet" type="text/css"/>
+</head>
+
+
+<div id="clf-container">
+    <h1>Búsqueda Inteligente</h1>
+    <div>
+        Este proyecto corresponde a la implementación de una barra de búsqueda inteligente en una Web ecommerce, que utiliza inteligencia artificial para proponer mejores resultados a sus usuarios, mediante el uso de imágenes como patrón de búsqueda
+    </div>
+    <form action="\" class="form-classifier" enctype="multipart/form-data" method="post">
+        <input autocomplete="off" name="file" required type="file">
+        <button class="hvr-grow-shadow" type="submit">Enviar</button>
+    </form>
+    {% if filename %}
+    {% if result['predicted_label'] is not none %}
+    
+    <h1>
+        Coincidencias para la búsqueda
+    </h1>
+    <div class="response response-ok">
+        Clase predicha: <b>{{ result['predicted_label'] }}</b><br>
+        Score: <b>{{ result['score'] }}%</b>
+        <img alt="Uploaded image" class="uploaded-image" src="{{ url_for('display_image' , filename=filename) }}">
+    </div>
+    <div class="response response-ok">
+        Clase predicha: <b>{{ result['predicted_label'] }}</b><br>
+        Score: <b>{{ result['score'] }}%</b>
+        <img alt="Uploaded image" class="uploaded-image" src="{{ url_for('display_image' , filename=filename) }}">
+    </div>
+    <div class="response response-ok">
+        Clase predicha: <b>{{ result['predicted_label'] }}</b><br>
+        Score: <b>{{ result['score'] }}%</b>
+        <img alt="Uploaded image" class="uploaded-image" src="{{ url_for('display_image' , filename=filename) }}">
+    </div>
+    <div class="response response-ok">
+        Clase predicha: <b>{{ result['predicted_label'] }}</b><br>
+        Score: <b>{{ result['score'] }}%</b>
+        <img alt="Uploaded image" class="uploaded-image" src="{{ url_for('display_image' , filename=filename) }}">
+    </div>
+    <div class="response response-ok">
+        Clase predicha: <b>{{ result['predicted_label'] }}</b><br>
+        Score: <b>{{ result['score'] }}%</b>
+        <img alt="Uploaded image" class="uploaded-image" src="{{ url_for('display_image' , filename=filename) }}">
+    </div>
+    <div class="response response-ok">
+        Clase predicha: <b>{{ result['predicted_label'] }}</b><br>
+        Score: <b>{{ result['score'] }}%</b>
+        <img alt="Uploaded image" class="uploaded-image" src="{{ url_for('display_image' , filename=filename) }}">
+    </div>
+
+    {% else %}
+    <div class="response response-error">
+        Error de predicción. No se encontró ninguna clase.
+        {% if error %}
+        <div>Detalle del error: {{error}}</div>
+        {% endif %}
+    </div>
+    {% endif %}
+    <!– <img alt="Uploaded image" class="uploaded-image" src="{{ url_for('display_image' , filename=filename) }}">–>
+    {% endif %}
+    {% if not filename and error %}
+    <div class="response response-ok">
+        Error: {{error}}
+    </div>
+    {% endif %}
+</div>
+</body>
+</html>
